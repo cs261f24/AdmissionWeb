@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Integration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/osmtogeojson"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+           /*display: flex;
+            /* Use Flexbox for layout 
+            flex-wrap: nowrap;*/
+            margin: 0;
+            padding: 20px;
+            font-family: 'Helvetica', sans-serif;
+            background-color: #F4F6F8; 
+            color: #0C2340; /* Navy text color */
+        }
+
+        #map {
+            /* Map takes 60% of the width */
+            height: 400px;
+            border: 2px solid #0C2340;
+            /* Space between map and list */
+        }
+        #resetMarkersButton {
+            display: block;
+            margin: 10px auto 0; /* Center the button below the map */
+            padding: 5px 10px; /* Small padding for a compact size */
+            font-size: 12px; /* Smaller font size */
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 5px; /* Rounded corners */
+            margin-bottom: 10px;
+            background-color: #0C2340; /* Light background */
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Slight shadow for a modern look */
+            transition: background-color 0.3s; /* Smooth hover effect */
+        }
+        #sidebar {
+            flex: 0 0 35%;
+            /* Sidebar takes 35% of the width */
+            padding: 15px;
+            border: 1px solid #0C2340;
+            /* Border around the sidebar */
+            border-radius: 5px;
+            /* Rounded corners */
+            background-color: #D7D3CC(0, 0%, 98%);
+            /* Light background color */
+            margin-right: 275px;
+        }
+        h1, h2, h3 {
+            font-family: 'Helvetica', sans-serif;
+            color: #0C2340;
+            margin-bottom: 10px;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        h2 {
+            font-size: 20px;
+        }
+        h3 {
+            font-size: 18px;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #0C2340;
+            background-color: #F4F6F8;
+        }
+        button {
+            background-color: #0C2340;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0A1D33;
+        }
+        #routesContainer {
+            flex: 1;
+            max-width: 93%;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #0C2340;;
+            border-radius: 5px;
+            background-color: #D7D3CC(0, 0%, 98%);
+            overflow-wrap: break-word; /* Matches the width of the map */
+        }
+        #routeDescription {
+            max-width: 100%;
+            overflow-wrap: break-word;
+            word-wrap: break-word; /* Ensure long text wraps within the container */
+        }
+        #routesList {
+            list-style-type: none;
+            padding: 0;
+        }
+        #routesList li {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        ul {
+            padding-left: 20px; /* Ensure bullet points are properly indented */
+        }
+        #routesList li:last-child {
+            border-bottom: none;
+        }
+        #buildingList {
+            list-style-type: none;
+            padding: 0;
+        }
+        #buildingList li {
+            padding: 8px; /* Padding for list items */
+            border-bottom: 1px solid #ddd; /* Separator between list items */
+        }
+        #buildingList li:last-child {
+            border-bottom: none; /* Remove separator for the last item */
+        }
+
+            .clickable {
+            cursor: pointer;
+            color: #007BFF; /* Link color */
+            text-decoration: underline;
+        }
+
+        .clickable:hover {
+            color: #0056b3; /* Darker blue on hover */
+            text-decoration: none;
+        }
+        .navbar {
+            background-color: #0C2340;
+        }
+
+        .navbar-brand, .nav-link {
+            color: white !important;
+
+        }
+
+        .navbar-brand:hover, .nav-link:hover {
+            color: #F4F6F8 !important;
+        }
+
+        .step-number-tooltip {
+            background-color: #1A1AFF; /* Blue background */
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 50%;
+            padding: 5px 10px;
+            border: 2px solid white;
+            text-align: center;
+        }
+        .btn-xavier-blue {
+            background-color: #0C2340;
+            color: white; /* White text for contrast */
+            border: none; /* Remove default borders */
+        }
+        .btn-xavier-blue:hover {
+            background-color: #1A3D63; /* Slightly lighter blue for hover effect */
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Xavier Campus Map</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#map">Map</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sidebar">Routes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#helpModal">Help</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            
+        </div>
+        <div class="row">
+            <!-- Map column (8 parts of the row) -->
+            <div class="col-lg-8 p-1">
+                <div id="map"></div>
+                <button id="resetMarkersButton" class="small-button"">Show All Markers</button>
+        
+
+        <h2>Routes to Take</h2>
+        <select id="routeSelect">
+            <option value="default">Select a Route...</option>
+        </select>
+        <button id="selectButton">Select</button>
+        <p id="routeDescription"></p>
+        </div>
+        
+
+
+    
+<!-- Sidebar for "Places to Visit" (4 parts of the row) -->
+<div class="col-lg-4 p-1">
+    <h2>Places to Visit</h2>
+    <select id="collegeSelect">
+        <option value="">All Colleges</option> <!-- Default option -->
+        <option value="arts_and_sciences">College of Arts and Sciences</option>
+        <option value="nursing">College of Nursing</option>
+        <option value="professional_sciences">College of Professional Sciences</option>
+        <option value="business">Williams College of Business</option>
+    </select>
+    <button id="filterButton">Filter</button>
+
+    <select id="buildingSelect">
+        <option value="">Select a Building...</option> <!-- Default option -->
+    </select>
+
+    <!-- Area for displaying the building image -->
+    <div id="imageContainer">
+        <h2 id="buildingHeader">Select a Building for More Information</h2>
+        <p id="buildingName"></p>
+
+
+        <img id="buildingImage" src="" alt="Building Image"
+            style="display: none; max-width: 75%; height: auto;" />
+    
+        <!-- Area for building information -->
+        <div id="buildingInfo" style="margin-top: 10px;">
+            <p id="buildingDescription"></p>
+    
+            <!-- Audio section -->
+            <audio id="buildingAudio" controls style="display: none;">
+                <source id="audioSource" src="" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <p id="noAudioMessage" style="display: none;">No audio available.</p>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="helpModalLabel">Help Guide</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Welcome to the Xavier Campus Map!</p>
+                <ul>
+                    <li>Use the <strong>Map</strong> tab to view campus locations.</li>
+                    <li>Go to the <strong>Routes</strong> tab to find routes to various locations.</li>
+                    <li>For more guidance, contact the campus support team: 
+                        <a href="https://www.xavier.edu/undergraduate-admission/contact" target="_blank">Contact Us</a>
+                    </li>
+                    <li>Visit Xavier's website for more information about campus tours: 
+                        <a href="https://www.xavier.edu/undergraduate-admission/visit/index" target="_blank">Visit Campus</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Student Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">School Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="student@xavier.edu" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-xavier-blue w-100">Login</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script>
+    // Initialize the map and set its view to the chosen geographical coordinates and zoom level
+    var map = L.map('map').setView([39.1487, -84.4780], 13);
+
+    // Add a tile layer to the map (you can use OpenStreetMap tiles)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    //live tracking
+    function trackUserLocation() {
+    if (!navigator.geolocation) {
+        alert("Geolocation not supported by your browser");
+        return;
+    }
+    }
+    
+    //live tracking
+    function trackUserLocation(){
+        if(!navigator.geolocation){
+            alert("Geolocation not supported by your browser");
+            return;
+        }
+    }
+    let userMarker;
+
+       
+        navigator.geolocation.watchPosition(
+            (position) => {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+
+              
+                if (userMarker) {
+                    userMarker.setLatLng([lat, lng]);
+                } else {
+                
+                    userMarker = L.marker([lat, lng], {
+                        icon: L.icon({
+                            iconUrl: 'https://example.com/location-icon.png',
+                            iconSize: [50, 30],  
+                            iconAnchor: [15, 15]
+                        })
+                    }).addTo(map).bindPopup("You are here!");
+                }
+
+                map.setView([lat, lng], 15);
+            },
+            (error) => {
+                console.error("Error getting location: ", error);
+                alert("Unable to retrieve your location.");
+            },
+            {
+                enableHighAccuracy: true, 
+                timeout: 5000,          
+                maximumAge: 0            
+            }
+        );
+    
+    map.whenReady(trackUserLocation);
+
+    // Load the .osm file (you may need to convert it to GeoJSON format first)
+    fetch('path/to/your/map.osm')
+        .then(response => response.text())
+        .then(data => {
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(data, "text/xml");
+            var geojson = osmtogeojson(xmlDoc);
+            L.geoJSON(geojson).addTo(map);
+        });
+        
+    // Add a marker for a specific location
+
+    let markers = {}; // Store references to existing markers
+    let activeMarker = null;
+
+    markers["Smith Hall"] = L.marker([39.147316, -84.473885]).addTo(map);
+    markers["Conaton Learning Commons (CLC)"] = L.marker([39.147405, -84.474905]).addTo(map);
+    markers["McDonald Memorial Library"] = L.marker([39.147796, -84.475486]).addTo(map);
+    markers["Walter Schott Hall"] = L.marker([39.147446, -84.475782]).addTo(map);
+    markers["Edgecliff Hall"] = L.marker([39.147791, -84.476828]).addTo(map);
+    markers["Schmidt Hall"] = L.marker([39.148060, -84.476369]).addTo(map);
+    markers["Hinkle Hall"] = L.marker([39.148304, -84.475929]).addTo(map);
+    markers["Alter Hall"] = L.marker([39.148372, -84.475052]).addTo(map);
+    markers["Logan Hall"] = L.marker([39.149000, -84.475261]).addTo(map);
+    markers["Lindner Family Physics Building"] = L.marker([39.149256, -84.475015]).addTo(map);
+    markers["Gallagher Student Center"] = L.marker([39.149672, -84.474489]).addTo(map);
+    markers["Albers Hall"] = L.marker([39.148683, -84.475669]).addTo(map);
+    markers["Hailstones Hall"] = L.marker([39.148437, -84.474435]).addTo(map);
+    markers["Our Lady of Peace Chapel"] = L.marker([39.147450, -84.476763]).addTo(map);
+    markers["Bellarmine Chapel"] = L.marker([39.148979, -84.474549]).addTo(map);
+    markers["Brockman Hall"] = L.marker([39.150244, -84.474216]).addTo(map);
+    markers["Buenger Hall"] = L.marker([39.150892, -84.473298]).addTo(map);
+    markers["Kuhlman Hall"] = L.marker([39.149833, -84.473175]).addTo(map);
+    markers["Husman Hall"] = L.marker([39.149306, -84.473110]).addTo(map);
+    markers["Justice Hall"] = L.marker([39.148316, -84.472874]).addTo(map);
+    markers["Cintas Center"] = L.marker([39.149862, -84.472043]).addTo(map);
+    markers["Cohen Center"] = L.marker([39.151132, -84.469523]).addTo(map);
+    markers["Flynn Hall"] = L.marker([39.148947, -84.471485]).addTo(map);
+    markers["Health United Building (HUB)"] = L.marker([39.148353, -84.469753]).addTo(map);
+    markers["Hoff Dining Commons"] = L.marker([39.148265, -84.473389]).addTo(map);
+    markers["Elet Hall"] = L.marker([39.149175, -84.479303]).addTo(map);
+    markers["Joseph Hall"] = L.marker([39.148918, -84.479593]).addTo(map);
+
+
+let buildingsData = []; // For building data
+
+// Fetch the BuildingsList.json file
+fetch('BuildingsList.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data); // Check what data is being fetched
+        buildingsData = data.Buildings;
+
+        // Sort buildings alphabetically by name
+        buildingsData.sort((a, b) => a.name.localeCompare(b.name));
+
+        const dropdown = document.getElementById('buildingSelect');
+        buildingsData.forEach(building => {
+            const option = document.createElement('option');
+            option.value = building.name;
+            option.textContent = building.name;
+            dropdown.appendChild(option);
+        });
+    })
+    .catch(error => console.error('Error fetching the JSON file:', error));
+
+// Filter buildings by college
+document.getElementById('filterButton').addEventListener('click', () => {
+    const selectedCollege = document.getElementById('collegeSelect').value;
+    const dropdown = document.getElementById('buildingSelect');
+
+    // Clear existing options
+    dropdown.innerHTML = '<option value="">Select a Building...</option>';
+
+    buildingsData.forEach(building => {
+        if (Array.isArray(building.college)) {
+            if (building.college.includes(selectedCollege)) {
+                const option = document.createElement('option');
+                option.value = building.name;
+                option.textContent = building.name;
+                dropdown.appendChild(option);
+            }
+        } else if (building.college === selectedCollege) {
+            const option = document.createElement('option');
+            option.value = building.name;
+            option.textContent = building.name;
+            dropdown.appendChild(option);
+        }
+    });
+});
+
+// Add click event listeners to markers
+Object.keys(markers).forEach(buildingName => {
+        markers[buildingName].on('click', function() {
+            handleMarkerClick(buildingName);
+        });
+    });
+
+
+// Handle building selection from the dropdown
+document.getElementById('buildingSelect').addEventListener('change', (event) => {
+    const buildingName = event.target.value;
+    handleBuildingClick(buildingName);
+});
+
+// Function to handle the building click event
+function handleBuildingClick(buildingName) {
+    console.log('Building clicked:', buildingName);
+
+
+    // Default zoom level for all buildings
+    const zoomLevel = 18;  // Adjust this value for how far you want to zoom in
+
+    // If no specific building is selected (i.e., the default option), show all markers and reset zoom
+    if (buildingName === "") {
+        // Add all markers back to the map
+        Object.keys(markers).forEach(name => {
+            map.addLayer(markers[name]);
+        });
+
+    
+        // Reset the map to the default view and zoom level
+        map.setView([39.149, -84.473], 15); // Change this to your desired default location and zoom level
+        
+        // Reset the building header
+        const buildingHeaderElement = document.getElementById('buildingHeader');
+        if (buildingHeaderElement) {
+            buildingHeaderElement.textContent = "No building selected";
+        }
+
+        return;
+    } 
+
+    // Otherwise, hide all markers
+    Object.keys(markers).forEach(name => {
+        console.log(`Clicked on ${buildingName}`);
+        map.removeLayer(markers[name]);
+    });
+
+    // Check if the marker exists for the clicked building
+    if (markers[buildingName]) {
+        // Add the selected marker back to the map
+        markers[buildingName].addTo(map);
+        // Pan to the marker's location and zoom in further
+        map.setView(markers[buildingName].getLatLng(), zoomLevel);
+        
+    } else {
+        console.error('No marker found for:', buildingName);
+    }
+    // Update the building name header
+    const building = buildingsData.find(b => b.name === buildingName);
+    const buildingHeaderElement = document.getElementById('buildingHeader');
+    if (buildingHeaderElement) {
+        buildingHeaderElement.textContent = building ? building.name : 'No Name Available.';
+    }
+
+    const selectedBuildingNameElement = document.getElementById('selectedBuildingName');
+    if (buildingName) {
+        selectedBuildingNameElement.textContent = buildingName;
+    } else {
+        selectedBuildingNameElement.textContent = "No Building Selected";
+    }
+}
+
+//This handles when a user clicks on building marker on map
+function handleMarkerClick(buildingName) {
+        const building = buildingsData.find(b => b.name === buildingName);
+
+        if (building) {
+
+            // Update building header to the selected building name
+            const buildingHeaderElement = document.getElementById('buildingHeader');
+            if (buildingHeaderElement) {
+                buildingHeaderElement.textContent = building.name || 'No name available.';
+            }
+
+            // Update image
+            const imageElement = document.getElementById('buildingImage');
+            imageElement.src = building.image;
+            imageElement.style.display = 'block';
+
+            // Update description
+            const descriptionElement = document.getElementById('buildingDescription');
+            descriptionElement.textContent = building.description || 'No description available.';
+
+            // Update audio
+            const audioElement = document.getElementById('buildingAudio');
+            const audioSource = document.getElementById('audioSource');
+            const noAudioMessage = document.getElementById('noAudioMessage');
+
+            if (building.audio) {
+                audioSource.src = building.audio;
+                audioElement.style.display = 'block';
+                noAudioMessage.style.display = 'none';
+                audioElement.load(); // Load the new audio file
+            } else {
+                audioElement.style.display = 'none';
+                noAudioMessage.style.display = 'block';
+            }
+
+            // If no specific building is selected (i.e., the default option), show all markers and reset zoom
+            if (buildingName === "") {
+                // Add all markers back to the map
+                Object.keys(markers).forEach(name => {
+                    map.addLayer(markers[name]);
+                });
+
+            
+                // Reset the map to the default view and zoom level
+                map.setView([39.149, -84.473], 15); // Change this to your desired default location and zoom level
+                return;
+            } 
+
+            // Otherwise, hide all markers
+            Object.keys(markers).forEach(name => {
+                console.log(`Clicked on ${buildingName}`);
+                map.removeLayer(markers[name]);
+            });
+
+             // Hide all markers except the selected one
+        Object.keys(markers).forEach(name => {
+            if (name === buildingName) {
+                markers[name].addTo(map); // Keep the selected marker visible
+            } else {
+                map.removeLayer(markers[name]); // Remove other markers from the map
+            }
+        });
+
+        // Pan to the selected marker and zoom in
+        const zoomLevel = 18; // Adjust zoom level as needed
+        if (markers[buildingName]) {
+            map.setView(markers[buildingName].getLatLng(), zoomLevel);
+        }
+
+            //Scroll to Building Info
+            document.getElementById("imageContainer").scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+    }
+
+let routesData = []; // For routes data
+let routingControl; // To store the current route control
+
+// Function to clear the currently drawn route
+function clearRoute() {
+    if (routingControl) {
+        map.removeLayer(routingControl); // Remove the current polyline from the map
+        routingControl = null; // Reset routing control
+    }
+}
+
+// Function to show only the markers included in the selected route
+function showMarkersForRoute(route) {
+    // Hide all markers initially
+    Object.values(markers).forEach(marker => marker.removeFrom(map));
+
+// Loop through the route's description to show only relevant markers
+if (route.description) {
+    let stepNumber = 1;
+
+    if (route.name == "Select a Route..."){
+        Object.values(markers).forEach(marker => marker.unbindTooltip());
+    }
+
+    if (route.name == "Ramp Friendly Tour"){
+        const routeDesc = route.description.join(" ");
+        Object.keys(markers).forEach(item => {
+            if (routeDesc.includes(item)) {
+                markers[item].addTo(map);
+                markers[item].bindTooltip(
+                    `<span class="marker-tooltip">${stepNumber}</span>`,
+                    {
+                        permanent: true,  // Keeps tooltip always visible
+                        direction: 'right', // Positions the tooltip on the right side
+                        className: 'step-number-tooltip'
+                    }
+                );
+                stepNumber++;
+            }
+        });
+    } else {
+        route.description.forEach(item => {
+            if (typeof item === 'string' && markers[item]) {
+                markers[item].addTo(map);
+                markers[item].bindTooltip(
+                        `<span class="marker-tooltip">${stepNumber}</span>`,
+                        {
+                            permanent: true,
+                            direction: 'right',
+                            className: 'step-number-tooltip'
+                        }
+                    );
+                stepNumber++;
+
+            } else if (typeof item === 'object' && item.main) {
+                // Add the main building marker if it exists
+                if (markers[item.main]) {
+                    markers[item.main].addTo(map);
+
+                    markers[item.main].bindTooltip(
+                            `<span class="marker-tooltip">${stepNumber}</span>`,
+                            {
+                                permanent: true,
+                                direction: 'right',
+                                className: 'step-number-tooltip'
+                            }
+                        );
+                    stepNumber++;
+                }
+                
+                // Add sub-item markers if they exist in markers
+                if (item.sub && Array.isArray(item.sub)) {
+                    item.sub.forEach(subItem => {
+                        if (markers[subItem]) {
+                            markers[subItem].addTo(map);
+                        }
+                    });
+                }
+            }
+        });
+    }
+}
+}
+// Fetch the XavierWalkingTourRoutes.json file
+fetch('XavierWalkingTourRoutes.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data); // Check what data is being fetched
+        routesData = data["Xavier Walking Tour Routes"];
+
+        // Populate the dropdown
+        const dropdown = document.getElementById('routeSelect');
+        routesData.forEach(route => {
+            const option = document.createElement('option');
+            option.value = route.name;
+            option.textContent = route.name;
+            dropdown.appendChild(option);
+        });
+    })
+    .catch(error => console.error('Error fetching the JSON file:', error));
+
+
+// Event listener for route selection
+document.getElementById('selectButton').addEventListener('click', () => {
+    const selectedRouteName = document.getElementById('routeSelect').value;
+    // Clear existing route and tooltips
+    clearRoute();
+    Object.values(markers).forEach(marker => marker.removeFrom(map));
+
+    if (selectedRouteName === "default") {
+        // If "Select a Route..." is selected, unbind all tooltips and show all markers
+        Object.values(markers).forEach(marker => {
+            marker.unbindTooltip();
+            marker.addTo(map);
+        });
+         // Reset description and map view
+         const routeDescriptionElement = document.getElementById('routeDescription');
+        map.setView([39.149, -84.473], 15); // Default map center and zoom
+        return; // Exit early
+    }
+
+    const route = routesData.find(r => r.name === selectedRouteName);
+    console.log("Selected route:", route); // Log selected route
+
+    const routeDescriptionElement = document.getElementById('routeDescription');
+    
+    // Clear previous content
+    routeDescriptionElement.innerHTML = '';
+    // Clear any existing route lines from the map
+    clearRoute();
+    Object.values(markers).forEach(marker => marker.removeFrom(map));
+
+    if (!selectedRouteName) {
+        // Default option selected, show all markers and reset map
+        Object.values(markers).forEach(marker => marker.addTo(map));
+        map.setView([39.149, -84.473], 15); // Reset to default center and zoom
+        const routeDescriptionElement = document.getElementById('routeDescription');
+        routeDescriptionElement.textContent = "Please select a route from the dropdown.";
+        return; // Exit early
+    }
+
+    if (route) {
+
+        showMarkersForRoute(route);
+        const routeDescriptionElement = document.getElementById('routeDescription');
+        routeDescriptionElement.innerHTML = '';
+
+        if (route.description && route.description.length > 0) {
+            // Create the main bulleted list
+            const ul = document.createElement('ul');
+            route.description.forEach(item => {
+                const li = document.createElement('li');
+                const buildingSpan = document.createElement('span');
+
+                // Check if the item is a string (normal building) or an object (with nested items)
+                if (typeof item === 'string') {
+                    buildingSpan.textContent = item;  // Regular building name
+                    if (route.name !== "Ramp Friendly Tour"){
+                    
+                        buildingSpan.classList.add('clickable');  // Apply clickable style
+
+                        // Add click event to pan to the building
+                        buildingSpan.addEventListener('click', () => handleBuildingClick(item));
+                    }
+                    li.appendChild(buildingSpan);  // Append the span to the list item
+                } else if (typeof item === 'object' && item.main) {
+                    buildingSpan.textContent = item.main;
+
+                    if (route.name !== "Ramp Friendly Tour"){
+                        buildingSpan.classList.add('clickable');
+                        buildingSpan.addEventListener('click', () => handleBuildingClick(item.main));
+                    }
+                    li.appendChild(buildingSpan);  // Append the span to the list item
+
+                    // Create a sublist for nested items (e.g., rooms)
+                    if (item.sub && Array.isArray(item.sub)) {
+                    
+                        const subUl = document.createElement('ul');  // Sub list
+                        item.sub.forEach(subItem => {
+                            const subLi = document.createElement('li');
+
+                            // Create a clickable span for sub-item
+                            const subSpan = document.createElement('span');
+                            subSpan.textContent = subItem;  // Sub-item name (e.g., room)
+
+                            // Make the sub-item clickable only if it corresponds to a marker
+                            if (route.name !== "Ramp Friendly Tour" && markers[subItem]) {
+                                subSpan.classList.add('clickable');  // Apply clickable style
+                                subSpan.addEventListener('click', () => handleBuildingClick(subItem));
+                                markers[subItem].addTo(map);
+                            }
+
+                            subLi.appendChild(subSpan);  // Add sub-item span to the list item
+                            subUl.appendChild(subLi);  // Add the sub-item list item to the sublist
+                        });
+                        li.appendChild(subUl);  // Append the sublist to the main list item
+                    }
+                }
+                ul.appendChild(li);  // Append the main list item to the list
+            });
+
+            // Append the list to the route description element
+            routeDescriptionElement.appendChild(ul);
+
+            // Plot the route on the map if coordinates are available
+            if (route.coordinates && route.coordinates.length > 0) {
+                
+                // Extract coordinates in the ORS format
+                const waypoints = route.coordinates.map(coord => [coord.lng, coord.lat]);
+
+                // ORS Request
+                const request = new XMLHttpRequest();
+                let profile = "foot-walking"; // Default profile
+                if (route.name === "Ramp Friendly Tour") { 
+                    profile = "wheelchair";
+                }
+
+                const apiUrl = `https://api.openrouteservice.org/v2/directions/${profile}/geojson`
+                request.open('POST', apiUrl);
+
+                request.setRequestHeader('Accept', 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8');
+                request.setRequestHeader('Content-Type', 'application/json');
+                request.setRequestHeader('Authorization', '5b3ce3597851110001cf6248d516376c40f349ba875d77f773974725');
+
+                request.onreadystatechange = function () {
+                    if (this.readyState === 4) {
+                        console.log('Status:', this.status);
+                        console.log('Headers:', this.getAllResponseHeaders());
+                        console.log('Body:', this.responseText);
+
+                        if (this.status === 200) {
+                            const response = JSON.parse(this.responseText);
+                            const routeCoords = response.features[0].geometry.coordinates.map(coord => [coord[1], coord[0]]); // Convert to [lat, lng]
+
+                            clearRoute();
+                            // Draw the route on the map
+                            routingControl = L.polyline(routeCoords, {
+                                color: 'blue', 
+                                weight: 5,
+                                opacity: 0.7
+                            }).addTo(map);
+
+                            map.fitBounds(routingControl.getBounds());
+                        } else {
+                            console.error('Error fetching the route from ORS API:', this.status);
+                        }
+                    }
+                };
+
+                const body = JSON.stringify({ "coordinates": waypoints });
+                console.log("Request body:", body); // Log for debugging
+                request.send(body);
+            }
+        } else {
+            routeDescriptionElement.textContent = 'No buildings listed for this route.';
+        }
+    } else {
+        routeDescriptionElement.textContent = 'Please select a valid route.';
+    }
+  
+});
+
+    // Display image and information when a building is selected
+    document.getElementById('buildingSelect').addEventListener('change', (event) => {
+    const selectedBuilding = event.target.value;
+    const building = buildingsData.find(b => b.name === selectedBuilding);
+    
+    const imageElement = document.getElementById('buildingImage');
+    const descriptionElement = document.getElementById('buildingDescription');
+    const audioElement = document.getElementById('buildingAudio');
+    const audioSource = document.getElementById('audioSource');
+    const noAudioMessage = document.getElementById('noAudioMessage'); 
+
+    
+    if (building) {
+        imageElement.src = building.image; // Set the image source
+        imageElement.style.display = 'block'; // Show the image
+        
+        descriptionElement.textContent = building.description || 'No description available.'; // Set the description
+
+        // Handle audio
+        if (building.audio && building.audio.trim !== '') {
+            // If audio is available
+            audioSource.src = building.audio;
+            audioElement.style.display = 'block'; // Show the audio player
+            noAudioMessage.style.display = 'none'; // Hide the "No audio available" message
+            audioElement.load(); // Load the new audio file
+        } else {
+            // If no audio is available
+            audioElement.style.display = 'none'; // Hide the audio player
+            noAudioMessage.style.display = 'block'; // Show the "No audio available" message
+        }
+    } else {
+    // Reset the fields if nothing is selected
+        imageElement.src = '';
+        imageElement.style.display = 'none'; // Hide the image if no selection
+        descriptionElement.textContent = ''; // Clear the description
+        audioElement.style.display = 'none'; // Hide the audio if no selection
+        noAudioMessage.style.display = 'none'; // Hide the "No audio available" message
+        }
+    
+
+
+});
+
+// Event listener for the "Show All Markers" button
+document.getElementById('resetMarkersButton').addEventListener('click', () => {
+    // Show all markers on the map
+    Object.keys(markers).forEach(name => {
+        map.addLayer(markers[name]);
+    });
+
+    // Reset the map view to the default location and zoom level
+    map.setView([39.149, -84.473], 15); // Adjust the coordinates and zoom level as needed
+
+    // Reset dropdown to the default option
+    const buildingSelect = document.getElementById('buildingSelect');
+    if (buildingSelect) {
+        buildingSelect.value = ""; // Ensure it resets to the "Select a building..." option
+    }
+
+    // Clear building information
+    const buildingHeaderElement = document.getElementById('buildingHeader');
+    if (buildingHeaderElement) {
+        buildingHeaderElement.textContent = "Select a Building for More Information";
+    }
+
+    const imageElement = document.getElementById('buildingImage');
+    if (imageElement) {
+        imageElement.src = ""; // Clear the image source
+        imageElement.style.display = 'none'; // Hide the image
+    }
+
+    const descriptionElement = document.getElementById('buildingDescription');
+    if (descriptionElement) {
+        descriptionElement.textContent = ""; // Clear the description
+    }
+
+    const audioElement = document.getElementById('buildingAudio');
+    const noAudioMessage = document.getElementById('noAudioMessage');
+    if (audioElement) {
+        audioElement.style.display = 'none'; // Hide the audio player
+    }
+    if (noAudioMessage) {
+        noAudioMessage.style.display = 'none'; // Hide the "no audio" message
+    }
+
+    // Optionally reset the selected building name display
+    const selectedBuildingNameElement = document.getElementById('selectedBuildingName');
+    if (selectedBuildingNameElement) {
+        selectedBuildingNameElement.textContent = "No building selected";
+    }
+});
+
+
+
+// Function to reset all markers on the map
+function resetMarkers() {
+    // Add all markers back to the map
+    Object.keys(markers).forEach(name => {
+        if (!map.hasLayer(markers[name])) {
+            markers[name].addTo(map);
+        }
+    clearRoute();
+    Object.values(markers).forEach(marker => marker.unbindTooltip());
+    });
+
+    // Reset map view to fit all markers
+    const group = L.featureGroup(Object.values(markers)); // Create a feature group with all markers
+    map.fitBounds(group.getBounds()); // Adjust map to fit all markers
+}
+
+// Attach event listener to the button
+document.getElementById('resetMarkersButton').addEventListener('click', resetMarkers);
+
+// Login form submission handling
+document.getElementById('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent form from submitting
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const schoolEmailPattern = /^[a-zA-Z0-9._%+-]+@xavier\.edu$/;
+
+    if (schoolEmailPattern.test(email)) {
+        // Example: Simulate successful login
+        alert('Login successful!');
+        const loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+        loginModal.hide(); // Close modal
+    } else {
+        alert('Please enter a valid school email address.');
+    }
+});
+
+
+    </script>
+</body>
+</html>

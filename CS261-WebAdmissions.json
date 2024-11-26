@@ -1,0 +1,58 @@
+{
+"Xavier Buildings Info Sheet": {
+    "College of Arts and Sciences": [
+    {
+        "A.B. Cohen Center": "Home to the department of Art and Nursing, also containing the departments of social work, occupational therapy, criminal justice, and health service administration, as well as the art gallery.",
+        "Albers Hall": "Located in the academic mall, Albers is the main biology building on campus, containing many biology focused classes as well as six fully stocked teaching laboratories and seven labs for higher level student and faculty research.",
+        "Alter Hall": "Serves as the primary academic building on campus, holding many core curriculum classes along with the dean’s offices for the College of Arts and Sciences. ",
+        "Edgecliff Hall": "Serves as the primary music building on campus. Contains many classrooms, music technology labs, recital halls, and other music related resources.",
+        "Thomas J. Hailstones Hall": "",
+        "Hinkle Hall": "",
+        "Lindner Family Physics Building": "Serves as Xavier’s physics building. Contains many physics lectures as well as labs and equipment for student and faculty research. ",
+        "Logan Hall": " Located in the academic mall, Logan serves as Xavier’s main chemistry building. Contains a wide variety of lab equipment for both student classes and labs as well as upper level research."
+    }
+    ],
+   "College of nursing": [
+    {
+        "Albers Hall": "",
+        "Health United Building": ""
+    }
+   ],
+   "Willams College of Buisness": [
+    {
+        "Stephen and Dolores Smith Hall": "Home to Xavier’s Williams College of Business. Contains various high tech classrooms along with centers for entrepreneurship, applied finance, business ethics, and academic advising."
+    }
+   ],
+   "College of Professional Sciences": [
+    {
+        "A.B. Cohen Center": ""
+    }
+   ],
+   "Athletics": [
+    {
+        "Cintas Center": "",
+        "Health United Building": "",
+        "Heidt Family Champion Center": ""
+    }
+   ],
+   "Student Services": [
+    {
+        "Andre J. and Mary Mcdonald Memorial Library": "",
+        "Conaton Learning Commons": "",
+        "Justice Hall": "",
+        "Walter Schott Hall": ""
+    }
+   ],
+   "Residence Halls": [
+    {
+        "Justice Hall": "",
+        "Husman Hall": "",
+        "Buenger Hall": "",
+        "Kuhlman Hall": "",
+        "Manor House": "",
+        "Unniversity Station": "",
+        "Brockman Hall": ""
+    }
+   ]
+ }
+}

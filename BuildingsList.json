@@ -1,0 +1,179 @@
+{
+    "Buildings": [
+        {
+            "name": "Walter Schott Hall",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Walter_Schott_Hall.png",
+            "description": "This is where your Xavier story begins! Xavier started downtown connected to St. Xavier Cathedral and moved to our campus here in the early 1900s. Built in 1969 as a Jesuit Redidence and is the tallest building on campus. Office of Admission & Student Financial Services. Departments of Modern Languages, Classics, Communication Arts, and History. The words above the entrance to the Admissions Office reflect the heart of the Xavier community."
+        },
+        {
+            "name": "Our Lady of Peace Chapel",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Our_Lady_of_Peace_Chapel.png",
+            "description": "Dedicated by the Williams family, moved from their Family Estate in Anderson Township as a gift to the university in 2017. Open daily 9:00am - 5:00pm. Silent Prayer; No services. Seats 22 people.",
+            "audio": "https://www.xavier.edu/undergraduate-admission/visit/walking-tour-audio/olp-chapel.mp3"
+        },
+        {
+            "name": "Edgecliff Hall",
+            "college": ["", "arts_and_sciences"],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Edgecliff_Hall.png",
+            "description": "Edgecilff Hall is the home to our Departments of Performing Arts and features music technology labs, soundproof practice studios, and Music Center recital halls. Named in honor of Edgecliff College; a Catholic, Private Women's college that merged with Xavier in 1980."
+        },
+        {
+            "name": "Schmidt Hall",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Schmidt_Hall.png",
+            "description": "Administration building. Office of Dr. Colleen Hanycz, our president. Xavier's first library before being converted into an administrative building in 1967."
+        },
+        {
+            "name": "Hinkle Hall",
+            "college": ["", "arts_and_sciences"],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Hinkle_Hall.png",
+            "description": "Built in 1919, it is the oldest standing building on campus and a 1/4 replica of the Francis Xavier family castle in Spain. Building for faculty offices; Departments of Math, English, Philosophy, and Theology."
+        },
+        {
+            "name": "McDonald Memorial Library",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/McDonald_Library.png",
+            "description": "Computer labs, access to printers (1000 sheets a semester), study tables and quiet study areas. OhioLink is a free service that allows students to request books from other university libraries in Ohio when Xavier University may not have access to said book. Makerspace available to students. Connects to Conaton Learning Commons on two floors."
+        },
+        {
+            "name": "Alter Hall",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Alter_Hall.png",
+            "description": "Serves as the primary academic building on campus, holding many core curriculum classes along with the dean’s offices for the College of Arts and Sciences. ",
+            "audio": "https://www.xavier.edu/undergraduate-admission/visit/walking-tour-audio/alter-hall.mp3"
+        },
+        {
+            "name": "Albers Hall",
+            "college": ["", "arts_and_sciences", "nursing"],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Albers_Hall.png",
+            "description": "Located in the academic mall, Albers is the main biology building on campus, containing many biology focused classes as well as six fully stocked teaching laboratories and seven labs for higher level student and faculty research."
+        },
+        {
+            "name": "Logan Hall",
+            "college": ["", "arts_and_sciences"],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Logan_Hall.png",
+            "description": "Located in the academic mall, Logan serves as Xavier’s main chemistry building. Contains a wide variety of lab equipment for both student classes and labs as well as upper level research."
+        },
+        {
+            "name": "Lindner Family Physics Building",
+            "college": ["", "arts_and_sciences"],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Lindner_Family_Physics_Building.png",
+            "description": "Serves as Xavier’s physics building. Contains many physics lectures as well as labs and equipment for student and faculty research."
+        },
+        {
+            "name": "Hailstones Hall",
+            "college": ["", "professional_sciences"],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Hailstones_Hall.png",
+            "description": "Multimedia classrooms and computer lab. The Education department and the Graduate Office are located here."
+        },
+        {
+            "name": "Bellarmine Chapel",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Bellarmine_Chapel.png",
+            "description": "Serves as the home parish to hundreds of Catholics in Cincinnati, as well as the Xavier community. The spiritual center of campus. Sunday Mass 9:00 a.m., 11:30 a.m., & 7:00 p.m.. Student led Sunday mass during academic year at 4:00 p.m. and 10:00 p.m.. Daily masses are also held in the side chapel at 8:00 a.m. & 5:00 p.m. during the week.",
+            "audio": "https://www.xavier.edu/undergraduate-admission/visit/walking-tour-audio/bellarmine.mp3"
+        },
+        {
+            "name": "Gallagher Student Center",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Gallagher_Student_Center.png",
+            "description": "Lower Level: Dining options that take X-Cash, Dining Dollars, Performing Arts Theatre and Studio Theatre. Level One: Welcome Desk (laptop checkout) and Bookstore (textbooks, school supplies, snacks and convenience store), printing station, and Victory Perk. Level Two: US Bank, Student Activities Council, Student Government, Center for Diversity and Inclusion, Center for International Education, Student Involvement. Level Three: Dorothy Day Center for Faith and Justice, Student Affairs and Enrichment, Title IX office, Interfaith Community Engagement, Clock Tower Lounge, Commuter Lounge.",
+            "audio": "https://www.xavier.edu/undergraduate-admission/visit/walking-tour-audio/gallagher.mp3"
+        },
+        {
+            "name": "Brockman Hall",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Brockman_Hall.png",
+            "description": "First-year students only. Co-ed separated by floor. Community style living, shared bathrooms. Bathrooms cleaned every day by physical plant staff. All resident halls have laundry facilities, full kitchens, study lounges, and recreation room.",
+            "audio": "https://www.xavier.edu/undergraduate-admission/visit/walking-tour-audio/brockman-hall.mp3"
+        },
+        {
+            "name": "Buenger Hall",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Buenger_Hall.png",
+            "description": "First-year and sophomore, athletes and honors students priority residence hall, co-ed by suite. Most suites have 2 double occupancy bedrooms. Some suites have 3 double occupancy bedrooms and a few have 3 or 4 single occupancy bedrooms. Suites have a furnished common area, 1 and 1/2 bathrooms and a kitchenette area with microwave/refrigerator combination and sink. All resident halls have laundry facilities, full kitchens, study lounges, and recreation room.",
+            "audio": "https://www.xavier.edu/undergraduate-admission/visit/walking-tour-audio/buenger-hall.mp3"
+        },
+        {
+            "name": "Kuhlman Hall",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Kuhlman_Hall.png",
+            "description": "First-year and sophomore students, co-ed by wing and floor. 2 double occupancy bedrooms connected by bathroom in the middle. All resident halls have laundry facilities, full kitchens, study lounges, and recreation room.",
+            "audio": "https://www.xavier.edu/undergraduate-admission/visit/walking-tour-audio/kuhlman.mp3"
+        },
+        {
+            "name": "Husman Hall",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Husman_Hall.png",
+            "description": "First-year students, co-ed by wing. 2 double occupancy bedrooms connected by bathroom in the middle. Renovated summer 2015. All resident halls have laundry facilities, full kitchens, study lounges, and recreation room.",
+            "audio": "https://www.xavier.edu/undergraduate-admission/visit/walking-tour-audio/husman.mp3"
+        },
+        {
+            "name": "Justice Hall",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Justice_Hall.png",
+            "description": "Built in 2011. Above the Hoff Dining Commons. Sophomore students and older- suite style with 4-8 students in each rooming group. Suite style living 3-4 double occupancy bedrooms. All resident halls have laundry facilities, full kitchens, study lounges, and recreation room."
+        },
+        {
+            "name": "Cintas Center",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Cintas_Center.png",
+            "description": "Opened in 2000. 10,224 seats. Classroom and lounge areas. Student tickets are included in tuition. Hosts Xavier men's and women's basketball games, and women's volleyball games. Banquet and event rooms located here.",
+            "audio": "https://www.xavier.edu/undergraduate-admission/visit/walking-tour-audio/cintas.mp3"
+        },
+        {
+            "name": "Cohen Center",
+            "college": ["", "arts_and_sciences", "professional_sciences"],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Cohen_Center.png",
+            "description": "Home to the department of Art and Nursing, also containing the departments of social work, occupational therapy, criminal justice, and health service administration, some education classes, as well as the art gallery. Nursing faculty offices located here."
+        },
+        {
+            "name": "Flynn Hall",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Flynn_Hall.png",
+            "description": "Home to Xavier University Police Department. The staff of professional officers is available 24 hours a day, 365 days a year. Our blue assistance light system, located in various places on campus, connects students in an emergency situation to the police station to talk to a respondent."
+
+        },
+        {
+            "name": "Health United Building (HUB)",
+            "college": ["", "professional_sciences", "nursing"],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Health_United_Building.png",
+            "description": "Opened in 2019 to LEED Gold Standards. Partnered with Tri-Health. Student Health Center. Home to Health Services (Nursing, OT, Exercise Science) with state-of-the-art simulation labs as well as classrooms and 12 private study rooms. Recreation Center with 4 lane pool, 3 group fitness studios, and 3 full-size multi purpose courts. On-campus pharmacy.",
+            "audio": "https://www.xavier.edu/undergraduate-admission/visit/walking-tour-audio/hub.mp3"
+        },
+        {
+            "name": "Hoff Dining Commons",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Hoff_Dining_Commons.png",
+            "description": "Open 7 a.m.-9 p.m. on weekdays and 8 a.m.-8 p.m. on weekends. Features five kitchens in an all-you-care-to-eat format, including fresh soups, salads and vegan selections, comfort foods and foods cooked to order, fresh baked breads and desserts, made-to-order deli sandwiches and a stone hearth pizza oven. Pizza ATM located outside the dining commons, provides medium (12-inch) pizzas in only 3 minutes.",
+            "audio": "https://www.xavier.edu/undergraduate-admission/visit/walking-tour-audio/hoff.mp3"
+        },
+        {
+            "name": "Smith Hall",
+            "college": ["", "business"],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Smith_Hall.png",
+            "description": "Home to Xavier’s Williams College of Business. Contains various high tech classrooms along with centers for entrepreneurship, applied finance, business ethics, and academic advising."
+        },
+        {
+            "name": "Conaton Learning Commons (CLC)",
+            "college": [""],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Conaton_Learning_Commons.png",
+            "description": "",
+            "audio": "https://www.xavier.edu/undergraduate-admission/visit/walking-tour-audio/clc.mp3"
+        },
+        {
+            "name": "Elet Hall",
+            "college": ["", "professional_sciences"],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Elet_Hall.png",
+            "description": ""
+        },
+        {
+            "name": "Joseph Hall",
+            "college": ["", "professional_sciences"],
+            "image": "https://raw.githubusercontent.com/cooperlanden/CS261-Web/refs/heads/main/WebImages/Joseph_Hall.png",
+            "description": ""
+        }
+    ]
+}

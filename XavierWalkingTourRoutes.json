@@ -1,0 +1,318 @@
+{
+  "Xavier Walking Tour Routes": [
+    {
+      "name": "Default Route",
+      "description": [
+        "Walter Schott Hall",
+        "Our Lady of Peace Chapel",
+        "Edgecliff Hall",
+        "Schmidt Hall",
+        "Hinkle Hall",
+        "Elet Hall",
+        "Joseph Hall",
+        "McDonald Memorial Library",
+        "Alter Hall",
+        "Albers Hall",
+        "Logan Hall",
+        "Lindner Family Physics Building",
+        "Hailstones Hall",
+        "Bellarmine Chapel",
+        "Gallagher Student Center",
+        {
+          "main": "Residence Halls:",
+          "sub": [
+            "Brockman Hall",
+            "Buenger Hall",
+            "Kuhlman Hall",
+            "Husman Hall",
+            "Justice Hall"
+          ]
+        },
+        "Cintas Center",
+        "Cohen Center",
+        "Flynn Hall",
+        "Health United Building (HUB)",
+        "Hoff Dining Commons",
+        "Smith Hall",
+        "Conaton Learning Commons (CLC)"
+      ],
+      "coordinates": [
+        { "lat": 39.147446, "lng": -84.475782 },
+        { "lat": 39.147450, "lng": -84.476763 },
+        { "lat": 39.147791, "lng": -84.476828 },
+        { "lat": 39.148060, "lng": -84.476369 },
+        {"lat": 39.148304, "lng": -84.475929},
+        {"lat": 39.149175, "lng": -84.479303},
+        {"lat": 39.148918, "lng": -84.479593},
+        {"lat": 39.147796, "lng": -84.475486},
+        {"lat": 39.148372, "lng": -84.475052},
+        {"lat": 39.148683, "lng": -84.475669},
+        {"lat": 39.149000, "lng": -84.475261},
+        {"lat": 39.149256, "lng": -84.475015},
+        {"lat": 39.148437, "lng": -84.474435},
+        {"lat": 39.148979, "lng": -84.474549},
+        {"lat": 39.149672, "lng": -84.474489},
+        {"lat": 39.150244, "lng": -84.474216},
+        {"lat": 39.150892, "lng": -84.473298},
+        {"lat": 39.149833, "lng": -84.473175},
+        {"lat": 39.149306, "lng": -84.473110},
+        {"lat": 39.148316, "lng": -84.472874},
+        {"lat": 39.149862, "lng": -84.472043},
+        {"lat": 39.151132, "lng": -84.469523},
+        {"lat": 39.148947, "lng": -84.471485},
+        {"lat": 39.148353, "lng": -84.469753},
+        {"lat": 39.148265, "lng": -84.473389},
+        {"lat": 39.147316, "lng": -84.473885},
+        {"lat": 39.147405, "lng": -84.474905}
+      ]
+    },    
+    {
+      "name": "College of Arts and Sciences",
+      "description": [
+        "Walter Schott Hall",
+        "Our Lady of Peace Chapel",
+        "Edgecliff Hall",
+        "Schmidt Hall",
+        "Hinkle Hall",
+        "McDonald Memorial Library",
+        "Alter Hall",
+        "Albers Hall",
+        "Logan Hall",
+        "Lindner Family Physics Building",
+        "Bellarmine Chapel",
+        "Gallagher Student Center",
+        {
+          "main": "Residence Halls:",
+          "sub": [
+              "Brockman Hall",
+              "Buenger Hall",
+              "Kuhlman Hall",
+              "Husman Hall",
+              "Justice Hall"
+          ]
+        },
+        "Cintas Center",
+        "Cohen Center",
+        "Flynn Hall",
+        "Health United Building (HUB)",
+        "Hoff Dining Commons",
+        "Conaton Learning Commons (CLC)"
+      ],
+      "coordinates": [
+        { "lat": 39.147446, "lng": -84.475782},
+        { "lat": 39.147450, "lng": -84.476763},
+        { "lat": 39.147791, "lng": -84.476828},
+        {"lat": 39.147796, "lng": -84.475486},
+        {"lat": 39.148372, "lng": -84.475052},
+        {"lat": 39.148683, "lng": -84.475669},
+        {"lat": 39.149000, "lng": -84.475261},
+        {"lat": 39.149256, "lng": -84.475015},
+        {"lat": 39.148979, "lng": -84.474549},
+        {"lat": 39.149672, "lng": -84.474489},
+        {"lat": 39.150244, "lng": -84.474216},
+        {"lat": 39.150892, "lng": -84.473298},
+        {"lat": 39.149833, "lng": -84.473175},
+        {"lat": 39.149306, "lng": -84.473110},
+        {"lat": 39.148316, "lng": -84.472874},
+        {"lat": 39.149862, "lng": -84.472043},
+        {"lat": 39.151132, "lng": -84.469523},
+        {"lat": 39.148947, "lng": -84.471485},
+        {"lat": 39.148353, "lng": -84.469753},
+        {"lat": 39.148265, "lng": -84.473389},
+        {"lat": 39.147405, "lng": -84.474905}
+      ]
+    },
+    {
+      "name": "Williams College of Business",
+      "description": [
+        "Walter Schott Hall",
+        "Our Lady of Peace Chapel",
+        "Schmidt Hall",
+        "McDonald Memorial Library",
+        "Alter Hall",
+        "Bellarmine Chapel",
+        "Gallagher Student Center",
+        {
+          "main": "Residence Halls:",
+          "sub": [
+              "Brockman Hall",
+              "Buenger Hall",
+              "Kuhlman Hall",
+              "Husman Hall",
+              "Justice Hall"
+          ]
+        },
+        "Cintas Center",
+        "Flynn Hall",
+        "Health United Building (HUB)",
+        "Hoff Dining Commons",
+        "Smith Hall",
+        "Conaton Learning Commons (CLC)"
+      ],
+      "coordinates": [
+        { "lat": 39.147446, "lng": -84.475782},
+        { "lat": 39.147450, "lng": -84.476763},
+        { "lat": 39.147791, "lng": -84.476828},
+        { "lat": 39.148060, "lng": -84.476369},
+        {"lat": 39.147796, "lng": -84.475486},
+        {"lat": 39.148372, "lng": -84.475052},
+        {"lat": 39.148979, "lng": -84.474549},
+        {"lat": 39.149672, "lng": -84.474489},
+        {"lat": 39.150244, "lng": -84.474216},
+        {"lat": 39.150892, "lng": -84.473298},
+        {"lat": 39.149833, "lng": -84.473175},
+        {"lat": 39.149306, "lng": -84.473110},
+        {"lat": 39.148316, "lng": -84.472874},
+        {"lat": 39.149862, "lng": -84.472043},
+        {"lat": 39.148947, "lng": -84.471485},
+        {"lat": 39.148353, "lng": -84.469753},
+        {"lat": 39.148265, "lng": -84.473389},
+        {"lat": 39.147316, "lng": -84.473885},
+        {"lat": 39.147405, "lng": -84.474905}
+      ]
+    },
+    {
+      "name": "College of Nursing",
+      "description": [
+        "Walter Schott Hall",
+        "Our Lady of Peace Chapel",
+        "Schmidt Hall",
+        "McDonald Memorial Library",
+        "Alter Hall",
+        "Bellarmine Chapel",
+        "Gallagher Student Center",
+        {
+          "main": "Residence Halls:",
+          "sub": [
+              "Brockman Hall",
+              "Buenger Hall",
+              "Kuhlman Hall",
+              "Husman Hall",
+              "Justice Hall"
+          ]
+        },
+        "Cintas Center",
+        "Flynn Hall",
+        "Health United Building (HUB)",
+        "Hoff Dining Commons",
+        "Conaton Learning Commons (CLC)"
+      ],
+      "coordinates": [
+        { "lat": 39.147446, "lng": -84.475782 },
+        { "lat": 39.147450, "lng": -84.476763 },
+        { "lat": 39.147791, "lng": -84.476828 },
+        { "lat": 39.148060, "lng": -84.476369 },
+        {"lat": 39.147796, "lng": -84.475486},
+        {"lat": 39.148372, "lng": -84.475052},
+        {"lat": 39.148979, "lng": -84.474549},
+        {"lat": 39.149672, "lng": -84.474489},
+        {"lat": 39.150244, "lng": -84.474216},
+        {"lat": 39.150892, "lng": -84.473298},
+        {"lat": 39.149833, "lng": -84.473175},
+        {"lat": 39.149306, "lng": -84.473110},
+        {"lat": 39.148316, "lng": -84.472874},
+        {"lat": 39.149862, "lng": -84.472043},
+        {"lat": 39.148947, "lng": -84.471485},
+        {"lat": 39.148353, "lng": -84.469753},
+        {"lat": 39.148265, "lng": -84.473389},
+        {"lat": 39.147405, "lng": -84.474905}
+      ]
+    },
+    {
+      "name": "College of Professional Sciences",
+      "description": [
+        "Walter Schott Hall",
+        "Elet Hall",
+        "Our Lady of Peace Chapel",
+        "Schmidt Hall",
+        "McDonald Memorial Library",
+        "Alter Hall",
+        "Hailstones Hall",
+        "Bellarmine Chapel",
+        "Gallagher Student Center",
+        {
+          "main": "Residence Halls:",
+          "sub": [
+              "Brockman Hall",
+              "Buenger Hall",
+              "Kuhlman Hall",
+              "Husman Hall",
+              "Justice Hall"
+          ]
+        },
+        "Cintas Center",
+        "Cohen Center",
+        "Flynn Hall",
+        "Health United Building (HUB)",
+        "Hoff Dining Commons",
+        "Conaton Learning Commons (CLC)"
+      ],
+      "coordinates": [
+        { "lat": 39.147446, "lng": -84.475782 },
+        {"lat": 39.149175, "lng": -84.479303},
+        { "lat": 39.147450, "lng": -84.476763 },
+        { "lat": 39.147791, "lng": -84.476828 },
+        { "lat": 39.148060, "lng": -84.476369 },
+        {"lat": 39.147796, "lng": -84.475486},
+        {"lat": 39.148372, "lng": -84.475052},
+        {"lat": 39.148437, "lng": -84.474435},
+        {"lat": 39.148979, "lng": -84.474549},
+        {"lat": 39.149672, "lng": -84.474489},
+        {"lat": 39.150244, "lng": -84.474216},
+        {"lat": 39.150892, "lng": -84.473298},
+        {"lat": 39.149833, "lng": -84.473175},
+        {"lat": 39.149306, "lng": -84.473110},
+        {"lat": 39.148316, "lng": -84.472874},
+        {"lat": 39.149862, "lng": -84.472043},
+        {"lat": 39.151132, "lng": -84.469523},
+        {"lat": 39.148947, "lng": -84.471485},
+        {"lat": 39.148353, "lng": -84.469753},
+        {"lat": 39.148265, "lng": -84.473389},
+        {"lat": 39.147405, "lng": -84.474905}
+      ]
+    },
+    {
+      "name": "Ramp Friendly Tour",
+      "description": [
+        "Start at Walter Schott Hall",
+        "Address: 1496 Dana Ave, Cincinnati, OH 45207",
+        "When facing Schott, head to the right towards the McDonald Memorial Library and the Conaton Learning Commons (CLC), taking the path to the double doors. This will place you on the 2nd floor of the CLC.",
+        "Keep walking through the building; there will be an elevator on the right. Head up to the 3rd floor.",
+        "To go to Williams College of Business (Smith Hall), exit the CLC doors and head on the rightmost path. Elevators are in the center of the building.",
+        "Head to Justice Hall next where you can visit Hoff Dining Commons, entering through the three doors to the main hall.",
+        "Exit those same doors and begin the travel to the Health United Building (HUB). Enter the elevator on the left and press the button for the 1st Floor. This elevator will take you to academic classrooms. Nursing labs will be on the 2nd Floor.",
+        "To visit the rec center, exit the elevator on the 1st floor. There is a second elevator on the rec center side.",
+        "The next building is Cintas Center. Head through the main entrance doors. There will be a room immediately upon walking in called the Joseph Suite. If this door is locked, continue along the left of the concourse until crossing the accessible seating area. Leave the same way.",
+        "From there, head across the street to Husman Hall and enter through the backside. Exit the front.",
+        "Next, head to Gallagher Student Center.",
+        "Then head to Bellarmine Chapel.",
+        "Exit and head to Alter Hall. You will be on the first floor. To exit, head down the hall; there will be an elevator to the right at the end of the hall. Select 1B; then leave Alter through those doors.",
+        "Upon exiting, you will be facing the Academic Mall. From Right to Left, the buildings will be Linder Family Physics Building, Logan, Albers Hall, Hinkle Hall, Schmidt Hall, and Edgecliff Hall. Head to the left; this will take you back up to Walter Schott Hall."
+      ],
+      "coordinates": [
+        { "lat": 39.147446, "lng": -84.475782 },
+        {"lat": 39.147796, "lng": -84.475486},
+        {"lat": 39.147405, "lng": -84.474905},
+        {"lat": 39.147316, "lng": -84.473885},
+        {"lat": 39.148316, "lng": -84.472874},
+        {"lat": 39.148353, "lng": -84.469753},
+        {"lat": 39.149862, "lng": -84.472043},
+        {"lat": 39.149306, "lng": -84.473110},
+        {"lat": 39.149672, "lng": -84.474489},
+        {"lat": 39.148979, "lng": -84.474549},
+        {"lat": 39.148372, "lng": -84.475052},
+        {"lat": 39.149256, "lng": -84.475015},
+        {"lat": 39.149000, "lng": -84.475261},
+        {"lat": 39.148683, "lng": -84.475669},
+        {"lat": 39.148304, "lng": -84.475929},
+        { "lat": 39.148060, "lng": -84.476369 },
+        { "lat": 39.147791, "lng": -84.476828 },
+        { "lat": 39.147446, "lng": -84.475782 }
+        
+      ]
+    }
+  ]
+}
+
+  
+  

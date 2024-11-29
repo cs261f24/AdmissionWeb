@@ -337,48 +337,77 @@
     }
     
     //live tracking
-    function trackUserLocation(){
-        if(!navigator.geolocation){
-            alert("Geolocation not supported by your browser");
-            return;
-        }
+    function trackUserLocation() {
+    if (!navigator.geolocation) {
+        alert("Geolocation not supported by your browser");
+        return;
     }
-    let userMarker;
 
-       
-        navigator.geolocation.watchPosition(
-            (position) => {
-                const lat = position.coords.latitude;
-                const lng = position.coords.longitude;
+    let userMarker; // Marker for user's location
+    const xavierBounds = L.latLngBounds(
+        [39.1468, -84.4746], // Southwest corner (approximate)
+        [39.1531, -84.4675]  // Northeast corner (approximate)
+    ); // Define Xavier University's campus boundary as a rectangle
 
-              
-                if (userMarker) {
-                    userMarker.setLatLng([lat, lng]);
-                } else {
-                
-                    userMarker = L.marker([lat, lng], {
-                        icon: L.icon({
-                            iconUrl: 'https://example.com/location-icon.png',
-                            iconSize: [50, 30],  
-                            iconAnchor: [15, 15]
-                        })
-                    }).addTo(map).bindPopup("You are here!");
-                }
+    navigator.geolocation.watchPosition(
+        (position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
 
-                map.setView([lat, lng], 15);
-            },
-            (error) => {
-                console.error("Error getting location: ", error);
-                alert("Unable to retrieve your location.");
-            },
-            {
-                enableHighAccuracy: true, 
-                timeout: 5000,          
-                maximumAge: 0            
+            // Check if the user's location is within Xavier University campus
+            const userLatLng = L.latLng(lat, lng);
+            if (!xavierBounds.contains(userLatLng)) {
+                alert("Warning: You are outside the Xavier University campus boundaries!");
             }
-        );
-    
-    map.whenReady(trackUserLocation);
+
+            if (userMarker) {
+                // Update marker position
+                userMarker.setLatLng(userLatLng);
+            } else {
+                // Create a new marker with a red icon if it doesn't exist
+                userMarker = L.marker(userLatLng, {
+                    icon: L.icon({
+                        iconUrl: 'https://cdn-icons-png.flaticon.com/512/1483/1483336.png', // Use a red icon
+                        iconSize: [50, 50],   // Size of the icon
+                        iconAnchor: [25, 25] // Anchor the icon to its center
+                    })
+                }).addTo(map).bindPopup("You are here!");
+            }
+
+            // Center the map on the user's position
+            map.setView(userLatLng, 15);
+        },
+        (error) => {
+            // Error handling with specific messages
+            let errorMessage;
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    errorMessage = "Location access denied by the user.";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    errorMessage = "Location unavailable.";
+                    break;
+                case error.TIMEOUT:
+                    errorMessage = "Location request timed out.";
+                    break;
+                default:
+                    errorMessage = "An unknown error occurred.";
+            }
+            console.error("Error getting location:", error);
+            alert(errorMessage);
+        },
+        {
+            enableHighAccuracy: true, // Use GPS for precise location
+            timeout: 5000,           // Wait up to 5 seconds for a response
+            maximumAge: 0            // Always fetch the latest location
+        }
+    );
+}
+
+// Ensure the map is initialized and then call the tracking function
+map.whenReady(() => {
+    trackUserLocation();
+});
 
     // Load the .osm file (you may need to convert it to GeoJSON format first)
     fetch('path/to/your/map.osm')

@@ -198,7 +198,7 @@
             <!-- Map column-->
             <div class="col-lg-8 p-1">
                 <div id="map"></div>
-                <button id="resetMarkersButton" class="small-button"">Show All Markers</button>
+                <button id="resetMarkersButton" class="small-button"">Show All Markers - Reset Route</button>
         
 
         <h2>Routes to Take</h2>
@@ -386,8 +386,7 @@
                 alert("Unable to retrieve your location.");
             },
             {
-                enableHighAccuracy: true, 
-                timeout: 10000,          
+                enableHighAccuracy: true,        
                 maximumAge: 0            
             }
         );
@@ -465,30 +464,45 @@ fetch('BuildingsList.json')
     })
     .catch(error => console.error('Error fetching the JSON file:', error));
 
-// Filter buildings by college
-document.getElementById('filterButton').addEventListener('click', () => {
+    document.getElementById('filterButton').addEventListener('click', () => {
     const selectedCollege = document.getElementById('collegeSelect').value;
     const dropdown = document.getElementById('buildingSelect');
 
-    // Clear existing options
+    // Clear existing options in the dropdown
     dropdown.innerHTML = '<option value="">Select a Building...</option>';
 
+    // Remove all markers from the map
+            Object.keys(markers).forEach(markerName => {
+                map.removeLayer(markers[markerName]);
+            });
+
+    // Filter buildings by college and update the dropdown and markers
     buildingsData.forEach(building => {
-        if (Array.isArray(building.college)) {
-            if (building.college.includes(selectedCollege)) {
-                const option = document.createElement('option');
-                option.value = building.name;
-                option.textContent = building.name;
-                dropdown.appendChild(option);
-            }
-        } else if (building.college === selectedCollege) {
+        if (
+            (Array.isArray(building.college) && building.college.includes(selectedCollege)) ||
+            building.college === selectedCollege
+        ) {
+            // Add filtered building to the dropdown
             const option = document.createElement('option');
             option.value = building.name;
             option.textContent = building.name;
             dropdown.appendChild(option);
+
+            // Add marker for the filtered building
+            if (markers[building.name]) {
+                markers[building.name].addTo(map);
+            }
         }
     });
+
+    // If no college is selected, show all markers
+    if (!selectedCollege) {
+        Object.keys(markers).forEach(markerName => {
+            markers[markerName].addTo(map);
+        });
+    }
 });
+
 
 // Add click event listeners to markers
 Object.keys(markers).forEach(buildingName => {
@@ -672,8 +686,8 @@ if (route.description) {
                 markers[item].bindTooltip(
                     `<span class="marker-tooltip">${stepNumber}</span>`,
                     {
-                        permanent: true,  // Keeps tooltip always visible
-                        direction: 'right', // Positions the tooltip on the right side
+                        permanent: true,
+                        direction: 'right',
                         className: 'step-number-tooltip'
                     }
                 );

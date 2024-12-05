@@ -317,14 +317,6 @@
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-
-    //live tracking
-    function trackUserLocation() {
-    if (!navigator.geolocation) {
-        alert("Geolocation not supported by your browser");
-        return;
-    }
-    }
     
     //live tracking
     function trackUserLocation(){
@@ -334,11 +326,13 @@
         }
     }
     let userMarker;
+    let mapCentered = false; // This tracks if the user location has already been centered
+
     const xavierBounds = L.latLngBounds(
         [39.141625, -84.487930], // Southwest corner (approximate)
         [39.153506, -84.45612]  // Northeast corner (approximate)
     ); // Define Xavier University's campus boundary as a rectangle
-       
+
         navigator.geolocation.watchPosition(
             (position) => {
                 const lat = position.coords.latitude;
@@ -361,8 +355,11 @@
                         })
                     }).addTo(map).bindPopup("You are here!");
                 }
-                // Center map on user's position
-                map.setView([lat, lng], 15);
+                // Center the map on user's position only if it hasn't been centered before
+                if (!mapCentered) {
+                    map.setView([lat, lng], 15);
+                    mapCentered = true; // Mark that the map has been centered
+                }
             },
             (error) => {
                 // Error handling with specific messages
@@ -390,10 +387,11 @@
                 maximumAge: 0            
             }
         );
-    
+            
     map.whenReady(trackUserLocation);
 
     // Load the .osm file
+    // Licensing - https://www.openstreetmap.org/copyright
     fetch('path/to/your/map.osm')
         .then(response => response.text())
         .then(data => {
@@ -876,6 +874,7 @@ document.getElementById('selectButton').addEventListener('click', () => {
                     profile = "wheelchair";
                 }
 
+                // © openrouteservice.org by HeiGIT | Map data © OpenStreetMap contributors
                 const apiUrl = `https://api.openrouteservice.org/v2/directions/${profile}/geojson`
                 request.open('POST', apiUrl);
 
@@ -1052,6 +1051,11 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
         alert('Please enter a valid school email address.');
     }
 });
+
+
+    </script>
+</body>
+</html>
 
 
     </script>
